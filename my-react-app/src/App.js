@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   const year = 2025;
@@ -19,6 +20,19 @@ function App() {
   const startDay = new Date(year, month, 1).getDay();
   const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+const [checkedDays, setCheckedDays] = useState(() => {
+  // Load from localStorage when the component mounts
+  const stored = localStorage.getItem('checkedDays');
+  return stored ? JSON.parse(stored) : [];
+});
+const handleCheckIn = (day) => {
+  if (!checkedDays.includes(day)) {
+    const updated = [...checkedDays, day];
+    setCheckedDays(updated);
+    localStorage.setItem('checkedDays', JSON.stringify(updated));
+  }
+};
+
 const calendarCells = [];
 
 for (let i = 0; i < startDay; i++) {
@@ -26,12 +40,23 @@ for (let i = 0; i < startDay; i++) {
 }
 
 for (let day = 1; day <= daysInMonth; day++) {
+  const isBirthsDay = day === birthsDay;
+  const isToday = day === currentDay;
+  const isBetween = day > currentDay && day < birthsDay;
+  const isChecked = checkedDays.includes(day);
+
   calendarCells.push(
-    <div key={`day-${day}`} className={`day ${(day === birthsDay)? "birthsday" : ""} ${(day === currentDay)? "current" : ""} ${(day > currentDay && day < birthsDay)? "remaining" : ""} `}>
+    <div
+      key={`day-${day}`}
+      className={`day ${isBirthsDay ? "birthsday" : ""} ${isToday ? "current" : ""} ${isBetween ? "remaining" : ""} ${isChecked ? "checked" : ""}`}
+      onClick={() => isToday && handleCheckIn(day)}
+    >
       <span>{day}</span>
     </div>
   );
 }
+
+
   return (
     <div className="container">
       <header className="app-header">

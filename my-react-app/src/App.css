@@ -1,7 +1,6 @@
 body * {
   padding: 0;
   margin: 0;
-  color:azure;
   box-sizing: border-box;
 }
 body {
@@ -21,6 +20,7 @@ body {
 }
 
 h1 {
+  color: azure;
   font-size: 365%;
   font-weight: 900;
   letter-spacing: 0.4rem;
@@ -29,6 +29,8 @@ text-shadow: #69b7bd 5px 5px 0;
 }
 
 h2 {
+  color: azure;
+
   font-size: 150%;
 }
 
@@ -49,6 +51,7 @@ h2 {
 }
 .day-label {
   font-weight: 700;
+  color: azure;
   font-size: 200%;
 }
 
@@ -56,18 +59,36 @@ h2 {
 display: flex;
 flex-direction: column;
 align-items: center;
+color: azure;
+
 }
 
 .day span{
   font-weight: 300;
   font-size: 400%;
 }
-div.birthsday, div.current{
+div.birthsday, div.current:not(.checked){
   background: #69b7bd;
   color: #161c1f;
+  &:hover {
+    background: beige;
+    border-color: antiquewhite;
+  }
+}
+div.current {
+  cursor: pointer;
 }
 div.remaining {
   background: #69b7bd55;
+}
+.day:hover {
+  transition: all 200ms ease-in-out;
+  background: #69b7bd;
+}
+.day.checked {
+  background-color: #ffffff;
+  color: #161c1f;
+  font-weight: 900;
 }
 .red {
   color: #cf1b1b;
