@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+body * {
+  padding: 0;
+  margin: 0;
+  color:azure;
+  box-sizing: border-box;
+}
+body {
+  background: #161c1f;
+}
+.container {
+
+  width: 90%;
+  margin: auto;
+  height: 100svh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header {
+  padding: 2rem 0;
+  border-bottom: #69b7bd solid 3px;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 365%;
+  font-weight: 900;
+  letter-spacing: 0.4rem;
+
+text-shadow: #69b7bd 5px 5px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2 {
+  font-size: 150%;
 }
 
-.App-link {
-  color: #61dafb;
+.app-main {
+  margin-top: 5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.calendar > div {
+  border-radius: 10px;
+  padding: 2rem;
+  border: #69b7bd solid 3px;
+}
+.day-label {
+  font-weight: 700;
+  font-size: 200%;
+}
+
+.day {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.day span{
+  font-weight: 300;
+  font-size: 400%;
+}
+div.birthsday, div.current{
+  background: #69b7bd;
+  color: #161c1f;
+}
+div.remaining {
+  background: #69b7bd55;
+}
+.red {
+  color: #cf1b1b;
+  font-weight: 900;
+  margin: 0 .5rem;
 }
